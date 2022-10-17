@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\KJWTMR_HFT_2022231.Repository\KJWTMR_HFT_2022231.Repository.csproj" />
+    <ProjectReference Include="..\KJWTMR_HTF_2022231.Logic\KJWTMR_HTF_2022231.Logic.csproj" />
+    <ProjectReference Include="..\KJWTMR_HTF_2022231.Models\KJWTMR_HTF_2022231.Models.csproj" />
+  </ItemGroup>
+
+</Project>
