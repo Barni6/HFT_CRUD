@@ -14,19 +14,21 @@ namespace KJWTMR_HTF_2022231.Models
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]      
         public int Id { get; set; }
-       
-        public virtual Type Type { get; set; }
+        public int Price { get; set; }
 
+
+        public virtual Type Type { get; set; }
         [ForeignKey(nameof(Type))]
         public int TypeId { get; set; }
-        public int Price { get; set; }
+
+       
+
 
         [NotMapped]
         public virtual Brand Brand { get; set; }
-
         [ForeignKey(nameof(Brand))]
         public int BrandId { get; set; }
 
-        public int Alcohol_Content { get; set; }
+       
     }
 }

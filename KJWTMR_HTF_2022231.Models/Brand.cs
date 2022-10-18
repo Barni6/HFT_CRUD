@@ -23,7 +23,6 @@ namespace KJWTMR_HTF_2022231.Models
 
         [NotMapped]
         public virtual ICollection<Beer> Beers { get; set; }
-
         public Brand()
         {
             this.Beers = new HashSet<Beer>();
