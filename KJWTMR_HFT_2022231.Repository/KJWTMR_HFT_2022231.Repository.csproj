@@ -7,5 +7,15 @@
   <ItemGroup>
     <ProjectReference Include="..\KJWTMR_HTF_2022231.Models\KJWTMR_HTF_2022231.Models.csproj" />
   </ItemGroup>
-
+	
+	<ItemGroup>
+		<PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="5.0.17" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="5.0.17" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.17">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+	</ItemGroup>
+	
+	
 </Project>
