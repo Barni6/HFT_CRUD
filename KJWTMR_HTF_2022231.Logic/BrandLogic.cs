@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace KJWTMR_HTF_2022231.Logic
 {
-    public class BrandLogic
+    public class BrandLogic : IBeerShopLogic<Brand>
     {
         IRepository<Brand> repository;
 
@@ -42,5 +42,6 @@ namespace KJWTMR_HTF_2022231.Logic
         {
             this.repository.Update(item);
         }
+     
     }
 }

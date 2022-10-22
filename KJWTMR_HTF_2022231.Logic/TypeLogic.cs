@@ -9,7 +9,7 @@ using Type = KJWTMR_HTF_2022231.Models.Type;
 
 namespace KJWTMR_HTF_2022231.Logic
 {
-    public class TypeLogic
+    public class TypeLogic : IBeerShopLogic<Type>
     {
         IRepository<Type> repository;
 

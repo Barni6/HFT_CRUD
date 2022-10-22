@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 
 namespace KJWTMR_HTF_2022231.Models.Interfaces
 {
-    public interface IBeerShopLogic
+    public interface IBeerShopLogic<T> where T : class
     {
-        void Create(Beer item);
+        void Create(T item);
         void Delete(int Id);
-        Beer Read(int id);
-        IEnumerable<Beer> ReadAll();
-        void Update(Beer item);
+        T Read(int id);
+        IEnumerable<T> ReadAll();
+        void Update(T item);
     }
 }
