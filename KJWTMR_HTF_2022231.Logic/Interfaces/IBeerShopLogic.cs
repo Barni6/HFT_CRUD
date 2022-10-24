@@ -1,4 +1,5 @@
-﻿using System;
+﻿using KJWTMR_HTF_2022231.Logic;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.ConstrainedExecution;
@@ -14,9 +15,7 @@ namespace KJWTMR_HTF_2022231.Models.Interfaces
         void Delete(int Id);
         T Read(int id);
         IEnumerable<T> ReadAll();
-        void Update(T item);
-
-      
+        void Update(T item);        
     }
     
 }

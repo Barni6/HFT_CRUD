@@ -1,4 +1,5 @@
-﻿using KJWTMR_HTF_2022231.Models;
+﻿using KJWTMR_HTF_2022231.Logic.Interfaces;
+using KJWTMR_HTF_2022231.Models;
 using KJWTMR_HTF_2022231.Models.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -7,7 +8,7 @@ using System.Runtime.ConstrainedExecution;
 
 namespace KJWTMR_HTF_2022231.Logic
 {
-    public  class BeerLogic : IBeerShopLogic<Beer>
+    public  class BeerLogic : IBeerLogic
     {
         IRepository<Beer> repository;
 
