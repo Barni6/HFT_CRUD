@@ -13,12 +13,16 @@ namespace KJWTMR_HTF_2022231.Logic
         IRepository<Beer> repository;
 
         public BeerLogic(IRepository<Beer> repository)
-        {
+        {          
             this.repository = repository;
         }
 
         public void Create(Beer item)
-        {
+        {           
+            if (item.Brand.ToString() == "")
+            {
+                throw new Exception("The brand of the beer is missing!");
+            }
             this.repository.Create(item);
         }
         public Beer Read(int id)

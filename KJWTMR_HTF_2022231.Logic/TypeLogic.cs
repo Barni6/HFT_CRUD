@@ -20,6 +20,10 @@ namespace KJWTMR_HTF_2022231.Logic
 
         public void Create(Type item)
         {
+            if (item.TypeName.ToString() == "")
+            {
+                throw new Exception("The name of the type is missing!");
+            }
             this.repository.Create(item);
         }
         public Type Read(int id)

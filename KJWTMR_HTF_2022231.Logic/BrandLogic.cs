@@ -19,6 +19,10 @@ namespace KJWTMR_HTF_2022231.Logic
 
         public void Create(Brand item)
         {
+            if (item.Name.ToString() == "")
+            {
+                throw new Exception("The name of the brand is missing!");
+            }
             this.repository.Create(item);
         }
         public Brand Read(int id)
