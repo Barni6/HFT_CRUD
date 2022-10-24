@@ -19,9 +19,9 @@ namespace KJWTMR_HTF_2022231.Logic
 
         public void Create(Beer item)
         {           
-            if (item.Brand.ToString() == "")
+            if (item.Id <=0)
             {
-                throw new Exception("The brand of the beer is missing!");
+                throw new Exception("The Id is lower or equal with 0!");
             }
             this.repository.Create(item);
         }

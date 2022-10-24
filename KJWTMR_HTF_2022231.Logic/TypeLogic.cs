@@ -20,9 +20,9 @@ namespace KJWTMR_HTF_2022231.Logic
 
         public void Create(Type item)
         {
-            if (item.TypeName.ToString() == "")
+            if (item.Id <= 0)
             {
-                throw new Exception("The name of the type is missing!");
+                throw new Exception("The Id is lower or equal with 0!");
             }
             this.repository.Create(item);
         }
