@@ -23,7 +23,59 @@ namespace KJWTMR_HFT_2022231.Test
 
         [SetUp]
         public void Setup()
-        {         
+        {
+          
+            Brand fakeBrandSoproni = new Brand()
+            {
+                Id = 1,
+                Name = "Soproni"
+            };
+            Brand fakeBrandBorsodi = new Brand()
+            {
+                Id = 2,
+                Name = "Borsodi"
+            };
+            Type fakeTypeIpa = new Type()
+            {
+                Id = 1,
+                TypeName = "Ipa"
+            };
+            Type fakeTypeVilagos = new Type()
+            {
+                Id = 4,
+                TypeName = "Világos sör"
+            };
+            var beers = new List<Beer>()
+            {
+                new Beer()
+                {
+                    Id = 15,
+                    BrandId = fakeBrandSoproni.Id,
+                    Price = 375,
+                    Brand = fakeBrandSoproni,
+                    Type = fakeTypeIpa,
+                    TypeId = fakeTypeIpa.Id,
+                },
+                new Beer()
+                {
+                    Id = 16,
+                    BrandId = fakeBrandSoproni.Id,
+                    Price = 375,
+                    Brand = fakeBrandSoproni,
+                    Type = fakeTypeIpa,
+                    TypeId = fakeTypeIpa.Id,
+                },
+                new Beer()
+                {
+                    Id = 17,
+                    BrandId = fakeBrandBorsodi.Id,
+                    Price = 300,
+                    Brand = fakeBrandBorsodi,
+                    Type = fakeTypeVilagos,
+                    TypeId = fakeTypeVilagos.Id,
+                }
+            }.AsQueryable();
+           
             mockBeerRepository = new Mock<IRepository<Beer>>();
             beerlogic = new BeerLogic(mockBeerRepository.Object);
 
@@ -32,6 +84,8 @@ namespace KJWTMR_HFT_2022231.Test
 
             mockTypeRepository = new Mock<IRepository<Type>>();
             typelogic = new TypeLogic(mockTypeRepository.Object);
+
+            mockBeerRepository.Setup(r => r.ReadAll()).Returns(beers);
         }
 
 
@@ -124,5 +178,49 @@ namespace KJWTMR_HFT_2022231.Test
         }
         #endregion
 
+        #region ReadTests
+        //[TestCase(0)]
+        //public void BeerReadTestCorrect(int id)
+        //{
+        //    var beer = new Beer() { Id = id };
+        //    //Act
+        //    beerlogic.Read(beer.Id);
+
+        //    //Assert
+        //    mockBeerRepository.Verify(r => r.Read(beer.Id), Times.Once);
+        //}
+
+
+        //[TestCase(0)]
+        //[TestCase(0)]
+        //public void BeerReadTestInCorrect(int id)
+        //{
+        //    var beer = new Beer() { Id = id };
+        //    try
+        //    {
+        //        //Act
+        //        beerlogic.Read(beer.Id);
+        //    }
+        //    catch { };
+
+        //    //Assert
+        //    mockBeerRepository.Verify(r => r.Read(beer.Id), Times.Never);
+        //}
+        #endregion
+
+        #region OtherTests
+        [Test]
+        public void AVGPriceTest()
+        {
+            //Arrange --> Setup()
+            double expected = 350;
+
+            //Act
+            var result = beerlogic.AVGPrice();
+
+            //Assert
+            Assert.That(result, Is.EqualTo(expected));
+        }
+        #endregion
     }
 }

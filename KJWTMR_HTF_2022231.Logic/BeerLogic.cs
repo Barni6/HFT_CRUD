@@ -55,6 +55,12 @@ namespace KJWTMR_HTF_2022231.Logic
         //        .Select(b => $"{b.Price} from {b.Brand.Name}");
         //}
 
+        public double AVGPrice()
+        {
+            return this.repository.ReadAll()
+                .Average(t => t.Price);
+        }
+
         public IEnumerable<BrandAvgPriceStatistics> BrandsAvgPrice()
         {
             return from beer in this.repository.ReadAll()

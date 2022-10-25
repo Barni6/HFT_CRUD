@@ -16,6 +16,8 @@ namespace KJWTMR_HTF_2022231.Logic.Interfaces
         void Update(Beer item);
 
         //Non-Cruds
+        //IQueryable<string> BeerPricesAndBrandNames();
+        public double AVGPrice();
         IEnumerable<BrandAvgPriceStatistics> BrandsAvgPrice();
         IEnumerable<TypeAvgPriceStatistics> TypesAvgPrice();
     }
