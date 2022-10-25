@@ -222,5 +222,41 @@ namespace KJWTMR_HFT_2022231.Test
             Assert.That(result, Is.EqualTo(expected));
         }
         #endregion
+
+
+        #region Non-CrudsTests
+
+        [Test]
+        public void BrandsAvgPriceTest()
+        {
+            var actual = beerlogic.BrandsAvgPrice().ToList();
+            var expected = new List<BrandAvgPriceStatistics>()
+            {
+                new BrandAvgPriceStatistics()
+                { Name = "Soproni", AvgPrice = 375 },
+                new BrandAvgPriceStatistics()
+                { Name = "Borsodi", AvgPrice = 300 }
+            };
+
+            Assert.AreEqual(expected, actual);
+        }
+
+        [Test]
+        public void TypesAvgPriceTest()
+        {
+            var actual = beerlogic.TypesAvgPrice().ToList();
+            var expected = new List<TypeAvgPriceStatistics>()
+            {
+                new TypeAvgPriceStatistics()
+                { Name = "Ipa", AvgPrice = 375 },
+                new TypeAvgPriceStatistics()
+                { Name = "Világos sör", AvgPrice = 300 }
+            };
+
+            Assert.AreEqual(expected, actual);
+        }
+
+
+        #endregion
     }
 }
