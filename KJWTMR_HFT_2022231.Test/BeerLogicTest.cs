@@ -256,7 +256,37 @@ namespace KJWTMR_HFT_2022231.Test
 
             Assert.AreEqual(expected, actual);
         }
-   
+
+        [Test]
+        public void BrandsBeerCountTest()
+        {
+            var actual = beerlogic.BrandsBeerCount().ToList();
+            var expected = new List<BrandsBeerCountStatistics>()
+            {
+                new BrandsBeerCountStatistics()
+                { Name = "Soproni", BeerCount = 2 },
+                new BrandsBeerCountStatistics()
+                { Name = "Borsodi", BeerCount = 1 }
+            };
+
+            Assert.AreEqual(expected, actual);
+        }
+
+        [Test]
+        public void TypesBeerCountTest()
+        {
+            var actual = beerlogic.TypesBeerCount().ToList();
+            var expected = new List<TypesBeerCountStatistics>()
+            {
+                new TypesBeerCountStatistics()
+                { Name = "Ipa", BeerCount = 2 },
+                new TypesBeerCountStatistics()
+                { Name = "Világos sör", BeerCount = 1 }
+            };
+
+            Assert.AreEqual(expected, actual);
+        }
+
         #endregion
     }
 }
