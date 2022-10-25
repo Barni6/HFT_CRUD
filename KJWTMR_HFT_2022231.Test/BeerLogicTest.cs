@@ -38,12 +38,14 @@ namespace KJWTMR_HFT_2022231.Test
             Type fakeTypeIpa = new Type()
             {
                 Id = 1,
-                TypeName = "Ipa"
+                TypeName = "Ipa",
+                Alcohol_Content = 6
             };
             Type fakeTypeVilagos = new Type()
             {
                 Id = 4,
-                TypeName = "Világos sör"
+                TypeName = "Világos sör",
+                Alcohol_Content=4
             };
             var beers = new List<Beer>()
             {
@@ -223,7 +225,6 @@ namespace KJWTMR_HFT_2022231.Test
         }
         #endregion
 
-
         #region Non-CrudsTests
 
         [Test]
@@ -255,8 +256,7 @@ namespace KJWTMR_HFT_2022231.Test
 
             Assert.AreEqual(expected, actual);
         }
-
-
+   
         #endregion
     }
 }

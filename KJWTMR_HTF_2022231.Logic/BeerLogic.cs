@@ -67,15 +67,24 @@ namespace KJWTMR_HTF_2022231.Logic
                    group beer by beer.Brand.Name into grp
                    select new BrandAvgPriceStatistics() { Name = grp.Key, AvgPrice = grp.Average(x => x.Price) };
         }
-
         public IEnumerable<TypeAvgPriceStatistics> TypesAvgPrice()
         {
             return from beer in this.repository.ReadAll()
                    group beer by beer.Type.TypeName into grp
                    select new TypeAvgPriceStatistics() { Name = grp.Key, AvgPrice = grp.Average(x => x.Price) };
+        }      
+        public IEnumerable<BrandsBeerCountStatistics> BrandsBeerCount()
+        {
+            return from beer in this.repository.ReadAll()
+                   group beer by beer.Brand.Name into grp
+                   select new BrandsBeerCountStatistics() { Name = grp.Key, BeerCount = grp.Count() };
         }
-
-
+        public IEnumerable<TypesBeerCountStatistics> TypesBeerCount()
+        {
+            return from beer in this.repository.ReadAll()
+                   group beer by beer.Type.TypeName into grp
+                   select new TypesBeerCountStatistics() { Name = grp.Key, BeerCount = grp.Count() };
+        }
     }
     public class BrandAvgPriceStatistics
     {
@@ -121,6 +130,50 @@ namespace KJWTMR_HTF_2022231.Logic
             return HashCode.Combine(this.Name, this.AvgPrice);
         }
     }
+    public class BrandsBeerCountStatistics
+    {
+        public string Name { get; set; }
+        public int BeerCount { get; set; }
 
+        public override bool Equals(object obj)
+        {
+            BrandsBeerCountStatistics b = obj as BrandsBeerCountStatistics;
+            if (b == null)
+            {
+                return false;
+            }
+            else
+            {
+                return this.Name == b.Name && this.BeerCount == b.BeerCount;
+            }
+        }
 
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(this.Name, this.BeerCount);
+        }
+    }
+    public class TypesBeerCountStatistics
+    {
+        public string Name { get; set; }
+        public int BeerCount { get; set; }
+
+        public override bool Equals(object obj)
+        {
+            TypesBeerCountStatistics b = obj as TypesBeerCountStatistics;
+            if (b == null)
+            {
+                return false;
+            }
+            else
+            {
+                return this.Name == b.Name && this.BeerCount == b.BeerCount;
+            }
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(this.Name, this.BeerCount);
+        }
+    }
 }
