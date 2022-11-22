@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.ConstrainedExecution;
+using System.Xml.Linq;
 
 namespace KJWTMR_HTF_2022231.Logic
 {
@@ -89,7 +90,7 @@ namespace KJWTMR_HTF_2022231.Logic
         {
             return from beer in this.repository.ReadAll()
                    group beer by beer.Brand.Name into grp
-                   select new MostExpensiveBeerPerBrandStatistics() { Brand=grp.Key, Price=grp.Max(x=>x.Price)};
+                   select new MostExpensiveBeerPerBrandStatistics() { Name=grp.Key, Price=grp.Max(x=>x.Price)};
         }
 
     }
@@ -114,6 +115,11 @@ namespace KJWTMR_HTF_2022231.Logic
         {
             return HashCode.Combine(this.Name, this.AvgPrice);
         }
+        public override string ToString()
+        {
+            return $"Brand: {Name},  AvgPrice: {AvgPrice}"; 
+
+        }
     }
     public class TypeAvgPriceStatistics
     {
@@ -135,6 +141,12 @@ namespace KJWTMR_HTF_2022231.Logic
         public override int GetHashCode()
         {
             return HashCode.Combine(this.Name, this.AvgPrice);
+        }
+
+        public override string ToString()
+        {
+            return $"Type: {Name},  AvgPrice: {AvgPrice}";
+
         }
     }
     public class BrandsBeerCountStatistics
@@ -159,6 +171,11 @@ namespace KJWTMR_HTF_2022231.Logic
         {
             return HashCode.Combine(this.Name, this.BeerCount);
         }
+        public override string ToString()
+        {
+            return $"Brand: {Name},  BeerCount: {BeerCount}";
+
+        }
     }
     public class TypesBeerCountStatistics
     {
@@ -182,10 +199,16 @@ namespace KJWTMR_HTF_2022231.Logic
         {
             return HashCode.Combine(this.Name, this.BeerCount);
         }
+
+        public override string ToString()
+        {
+            return $"Type: {Name},  BeerCount: {BeerCount}";
+
+        }
     }
     public class MostExpensiveBeerPerBrandStatistics
     {
-        public string Brand { get; set; }
+        public string Name { get; set; }
         public int Price { get; set; }
 
         public override bool Equals(object obj)
@@ -197,12 +220,17 @@ namespace KJWTMR_HTF_2022231.Logic
             }
             else
             {
-                return this.Brand == b.Brand && this.Price == b.Price;
+                return this.Name == b.Name && this.Price == b.Price;
             }
         }
         public override int GetHashCode()
         {
-            return HashCode.Combine(this.Brand, this.Price);
+            return HashCode.Combine(this.Name, this.Price);
+        }
+
+        public override string ToString()
+        {
+            return $"Brand: {Name},  Price: {Price}";
         }
     }
 }

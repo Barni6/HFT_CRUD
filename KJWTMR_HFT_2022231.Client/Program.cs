@@ -4,6 +4,7 @@ using KJWTMR_HTF_2022231.Logic;
 using KJWTMR_HTF_2022231.Models.Data;
 using System.Collections.Generic;
 using System;
+using System.Linq;
 
 namespace KJWTMR_HFT_2022231.Client
 {
@@ -24,7 +25,7 @@ namespace KJWTMR_HFT_2022231.Client
         static void Main(string[] args)
         {
             BeerShopDBContext ctx = new BeerShopDBContext();
-
+            
             BeerRepository beerRepo = new BeerRepository(ctx);
             BrandRepository brandRepo = new BrandRepository(ctx);
             TypeRepository typeRepo = new TypeRepository(ctx);
@@ -32,18 +33,16 @@ namespace KJWTMR_HFT_2022231.Client
             BeerLogic beerLogic = new BeerLogic(beerRepo);
             BrandLogic brandLogic = new BrandLogic(brandRepo);
             TypeLogic typeLogic = new TypeLogic(typeRepo);
-            
+            ;
             var menu = new ConsoleMenu(args, level: 0)
                .Add("List avg prices by brands", () =>
                {
-                   var q0 = beerLogic.BrandsAvgPrice();
-                   q0.ToConsole();
+                   beerLogic.BrandsAvgPrice().ToConsole();             
                    Console.ReadLine();
                })
                .Add("List avg prices by types", () =>
                {
-                   var q1 = beerLogic.TypesAvgPrice();
-                   q1.ToConsole();
+                   beerLogic.TypesAvgPrice().ToConsole();
                    Console.ReadLine();
                })
                .Add("List beer counts by brands", () =>
@@ -63,7 +62,7 @@ namespace KJWTMR_HFT_2022231.Client
                })
                .Add("Exit", ConsoleMenu.Close);
 
-            menu.Show();
+            menu.Show();          
         }
     }
 }
