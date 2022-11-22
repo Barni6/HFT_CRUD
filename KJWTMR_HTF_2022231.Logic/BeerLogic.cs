@@ -85,6 +85,13 @@ namespace KJWTMR_HTF_2022231.Logic
                    group beer by beer.Type.TypeName into grp
                    select new TypesBeerCountStatistics() { Name = grp.Key, BeerCount = grp.Count() };
         }
+        public IEnumerable<MostExpensiveBeerPerBrandStatistics> MostExpensiveBeerPerBrand()
+        {
+            return from beer in this.repository.ReadAll()
+                   group beer by beer.Brand.Name into grp
+                   select new MostExpensiveBeerPerBrandStatistics() { Brand=grp.Key, Price=grp.Max(x=>x.Price)};
+        }
+
     }
     public class BrandAvgPriceStatistics
     {
@@ -174,6 +181,29 @@ namespace KJWTMR_HTF_2022231.Logic
         public override int GetHashCode()
         {
             return HashCode.Combine(this.Name, this.BeerCount);
+        }
+    }
+
+    public class MostExpensiveBeerPerBrandStatistics
+    {
+        public string Brand { get; set; }
+        public int Price { get; set; }
+
+        public override bool Equals(object obj)
+        {
+            MostExpensiveBeerPerBrandStatistics b = obj as MostExpensiveBeerPerBrandStatistics;
+            if (b == null)
+            {
+                return false;
+            }
+            else
+            {
+                return this.Brand == b.Brand && this.Price == b.Price;
+            }
+        }
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(this.Brand, this.Price);
         }
     }
 }

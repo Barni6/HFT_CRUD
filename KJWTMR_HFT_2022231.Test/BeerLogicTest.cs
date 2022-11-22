@@ -287,6 +287,21 @@ namespace KJWTMR_HFT_2022231.Test
             Assert.AreEqual(expected, actual);
         }
 
+        [Test]
+        public void MostExpensiveBeerPerBrandTest()
+        {
+            var actual = beerlogic.MostExpensiveBeerPerBrand().ToList();
+            var expected = new List<MostExpensiveBeerPerBrandStatistics>()
+            {
+                new MostExpensiveBeerPerBrandStatistics()
+                { Brand ="Soproni", Price=375 },
+                new MostExpensiveBeerPerBrandStatistics()
+                { Brand="Borsodi", Price=300 }
+            };
+
+            Assert.AreEqual(expected, actual);
+        }
+
         #endregion
     }
 }

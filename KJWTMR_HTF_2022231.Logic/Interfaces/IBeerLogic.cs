@@ -20,5 +20,8 @@ namespace KJWTMR_HTF_2022231.Logic.Interfaces
         public double AVGPrice();
         IEnumerable<BrandAvgPriceStatistics> BrandsAvgPrice();
         IEnumerable<TypeAvgPriceStatistics> TypesAvgPrice();
+        IEnumerable<BrandsBeerCountStatistics> BrandsBeerCount();
+        IEnumerable<TypesBeerCountStatistics> TypesBeerCount();
+        IEnumerable<MostExpensiveBeerPerBrandStatistics> MostExpensiveBeerPerBrand();
     }
 }
