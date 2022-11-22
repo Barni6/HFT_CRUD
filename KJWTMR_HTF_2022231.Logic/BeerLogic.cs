@@ -183,7 +183,6 @@ namespace KJWTMR_HTF_2022231.Logic
             return HashCode.Combine(this.Name, this.BeerCount);
         }
     }
-
     public class MostExpensiveBeerPerBrandStatistics
     {
         public string Brand { get; set; }

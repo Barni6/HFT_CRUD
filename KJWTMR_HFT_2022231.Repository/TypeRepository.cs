@@ -10,7 +10,7 @@ using Type = KJWTMR_HTF_2022231.Models.Type;
 
 namespace KJWTMR_HFT_2022231.Repository
 {
-    internal class TypeRepository : Repository<Type>, IRepository<Type>
+    public class TypeRepository : Repository<Type>, IRepository<Type>
     {
         public TypeRepository(BeerShopDBContext ctx) : base(ctx)
         { }
