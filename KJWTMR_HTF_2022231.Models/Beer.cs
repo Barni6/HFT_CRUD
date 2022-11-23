@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Text.Json.Serialization;
 
 namespace KJWTMR_HTF_2022231.Models
 {
@@ -16,7 +17,7 @@ namespace KJWTMR_HTF_2022231.Models
         public int Id { get; set; }
         public int Price { get; set; }
 
-
+        [JsonIgnore]
         public virtual Type Type { get; set; }
         [ForeignKey(nameof(Type))]
         public int TypeId { get; set; }
@@ -25,6 +26,7 @@ namespace KJWTMR_HTF_2022231.Models
 
 
         [NotMapped]
+        [JsonIgnore]
         public virtual Brand Brand { get; set; }
         [ForeignKey(nameof(Brand))]
         public int BrandId { get; set; }
