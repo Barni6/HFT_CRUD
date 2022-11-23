@@ -4,7 +4,12 @@
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
 
-  <ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Microsoft.AspNet.WebApi.Client" Version="5.2.9" />
+		<PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
+	</ItemGroup>
+
+	<ItemGroup>
     <ProjectReference Include="..\KJWTMR_HFT_2022231.Repository\KJWTMR_HFT_2022231.Repository.csproj" />
     <ProjectReference Include="..\KJWTMR_HTF_2022231.Logic\KJWTMR_HTF_2022231.Logic.csproj" />
     <ProjectReference Include="..\KJWTMR_HTF_2022231.Models\KJWTMR_HTF_2022231.Models.csproj" />
