@@ -17,7 +17,7 @@ namespace KJWTMR_HFT_2022231.Repository
 
         public override Type Read(int Id)
         {
-            return this.ctx.Types.First(t => t.Id == Id);
+            return this.ctx.Types.FirstOrDefault(t => t.Id == Id);
         }
 
         public override void Update(Type item)

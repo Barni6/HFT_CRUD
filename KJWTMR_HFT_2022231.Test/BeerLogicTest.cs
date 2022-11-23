@@ -294,9 +294,9 @@ namespace KJWTMR_HFT_2022231.Test
             var expected = new List<MostExpensiveBeerPerBrandStatistics>()
             {
                 new MostExpensiveBeerPerBrandStatistics()
-                { Brand ="Soproni", Price=375 },
+                { Name ="Soproni", Price=375 },
                 new MostExpensiveBeerPerBrandStatistics()
-                { Brand="Borsodi", Price=300 }
+                { Name="Borsodi", Price=300 }
             };
 
             Assert.AreEqual(expected, actual);

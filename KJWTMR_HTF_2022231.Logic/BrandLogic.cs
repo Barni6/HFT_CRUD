@@ -19,7 +19,7 @@ namespace KJWTMR_HTF_2022231.Logic
 
         public void Create(Brand item)
         {
-            if (item.Id <=0)
+            if (item.Id <= 0)
             {
                 throw new Exception("The Id is lower or equal with 0!");
             }

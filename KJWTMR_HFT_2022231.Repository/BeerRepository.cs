@@ -17,7 +17,7 @@ namespace KJWTMR_HFT_2022231.Repository
 
         public override Beer Read(int Id)
         {
-            return this.ctx.Beers.First(t => t.BrandId == Id);
+            return this.ctx.Beers.FirstOrDefault(t => t.BrandId == Id);
         }
 
         public override void Update(Beer item)

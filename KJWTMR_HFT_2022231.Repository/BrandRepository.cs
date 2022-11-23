@@ -16,7 +16,7 @@ namespace KJWTMR_HFT_2022231.Repository
 
         public override Brand Read(int Id)
         {
-            return this.ctx.Brands.First(t => t.Id == Id);
+            return this.ctx.Brands.FirstOrDefault(t => t.Id == Id);
         }
 
         public override void Update(Brand item)
