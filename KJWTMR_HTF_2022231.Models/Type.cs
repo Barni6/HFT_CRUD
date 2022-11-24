@@ -6,6 +6,7 @@ using System.Linq;
 using System.Runtime.ConstrainedExecution;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace KJWTMR_HTF_2022231.Models
 {
@@ -29,5 +30,11 @@ namespace KJWTMR_HTF_2022231.Models
         }
 
         public int Alcohol_Content { get; set; }
+
+        public double AvgPrice { get; set; }
+        public override string ToString()
+        {
+            return $"Type: {TypeName},  AvgPrice: {AvgPrice}";
+        }
     }
 }

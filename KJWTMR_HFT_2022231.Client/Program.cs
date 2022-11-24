@@ -172,16 +172,18 @@ namespace KJWTMR_HFT_2022231.Client
 
         static void Stat(string endpoint)
         {
-            var result = rest.Get<Beer>($"Stat/{endpoint}");
+            var result = rest.Get<Brand>($"Stat/{endpoint}");
             //result.ToConsole();
             foreach (var item in result)
             {
-                Console.WriteLine(item.ToString());
+                Console.WriteLine(item);
             }
         }
             
         static void Main(string[] args)
         {
+            
+            //ToStringeket kell megcsinálni
             rest = new RestService("http://localhost:52522/","beer");
 
             var brandSubMenu = new ConsoleMenu(args, level: 1)

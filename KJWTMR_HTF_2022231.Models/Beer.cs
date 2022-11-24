@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Text.Json.Serialization;
+using System.Xml.Linq;
 
 namespace KJWTMR_HTF_2022231.Models
 {
@@ -31,7 +32,6 @@ namespace KJWTMR_HTF_2022231.Models
         public virtual Brand Brand { get; set; }
         [ForeignKey(nameof(Brand))]
         public int BrandId { get; set; }
-
-       
+   
     }
 }

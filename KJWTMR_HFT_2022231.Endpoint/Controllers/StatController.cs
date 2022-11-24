@@ -19,7 +19,7 @@ namespace KJWTMR_HFT_2022231.Endpoint.Controllers
         [HttpGet]
         public IEnumerable<BrandAvgPriceStatistics> BrandsAvgPrice()
         {
-            return this.beerLogic.BrandsAvgPrice();
+            return this.beerLogic.BrandsAvgPrice();           
         }
 
         [HttpGet]

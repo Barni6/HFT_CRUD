@@ -27,5 +27,12 @@ namespace KJWTMR_HTF_2022231.Models
         {
             this.Beers = new HashSet<Beer>();
         }
+
+
+        public double AvgPrice { get; set; }
+        public override string ToString()
+        {
+            return $"Brand: {Name},  AvgPrice: {AvgPrice}";
+        }
     }
 }
