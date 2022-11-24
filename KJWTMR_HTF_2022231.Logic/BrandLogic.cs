@@ -14,16 +14,17 @@ namespace KJWTMR_HTF_2022231.Logic
 
         public BrandLogic(IRepository<Brand> repository)
         {
+
             this.repository = repository;
         }
 
         public void Create(Brand item)
         {
-            if (item.Id <= 0)
+            if (item.Name.Length <= 1)
             {
-                throw new Exception("The Id is lower or equal with 0!");
+                throw new ArgumentException("The Brand name is too short!");
             }
-            this.repository.Create(item);
+            this.repository.Create(item);            
         }
         public Brand Read(int id)
         {

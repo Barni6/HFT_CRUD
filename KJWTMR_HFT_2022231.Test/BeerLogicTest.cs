@@ -104,28 +104,13 @@ namespace KJWTMR_HFT_2022231.Test
             //Assert
             mockBeerRepository.Verify(r => r.Create(beer), Times.Once);
         }
+     
 
-        [TestCase(0)]
-        [TestCase(-1)]
-        public void CreateBeerTestInCorrect(int id)
+        [TestCase("teszt1")]
+        [TestCase("teszt2")]
+        public void CreateBrandTestCorrect(string teszt)
         {
-            var beer = new Beer() { Id = id };
-            try
-            {
-                //Act
-                beerlogic.Create(beer);
-            }
-            catch{ }
-                      
-            //Assert
-            mockBeerRepository.Verify(r => r.Create(beer), Times.Never);
-        }
-
-        [TestCase(1)]
-        [TestCase(8)]
-        public void CreateBrandTestCorrect(int id)
-        {
-            var brand = new Brand() { Id = id };
+            var brand = new Brand() { Name = teszt };
 
             //Act
             brandlogic.Create(brand);
@@ -134,11 +119,11 @@ namespace KJWTMR_HFT_2022231.Test
             mockBrandRepository.Verify(r => r.Create(brand), Times.Once);
         }
 
-        [TestCase(0)]
-        [TestCase(-1)]
-        public void CreateBrandTestInCorrect(int id)
+        [TestCase("1")]
+        [TestCase("")]
+        public void CreateBrandTestInCorrect(string teszt)
         {
-            var brand = new Brand() { Id = id };
+            var brand = new Brand() { Name = teszt};
             try
             {
                 //Act
@@ -150,11 +135,11 @@ namespace KJWTMR_HFT_2022231.Test
             mockBrandRepository.Verify(r => r.Create(brand), Times.Never);
         }
 
-        [TestCase(1)]
-        [TestCase(6)]
-        public void CreateTypeTestCorrect(int id)
+        [TestCase("teszt1")]
+        [TestCase("teszt2")]
+        public void CreateTypeTestCorrect(string teszt)
         {
-            var type = new Type() { Id = id };
+            var type = new Type() { TypeName = teszt };
 
             //Act
             typelogic.Create(type);
@@ -163,11 +148,11 @@ namespace KJWTMR_HFT_2022231.Test
             mockTypeRepository.Verify(r => r.Create(type), Times.Once);
         }
 
-        [TestCase(0)]
-        [TestCase(-1)]
-        public void CreateTypeTestInCorrect(int id)
+        [TestCase("1")]
+        [TestCase("0")]
+        public void CreateTypeTestInCorrect(string teszt)
         {
-            var type = new Type() { Id = id };
+            var type = new Type() { TypeName = teszt };
             try
             {
                 //Act
@@ -179,40 +164,10 @@ namespace KJWTMR_HFT_2022231.Test
             mockTypeRepository.Verify(r => r.Create(type), Times.Never);
         }
         #endregion
-
-        #region ReadTests
-        //[TestCase(0)]
-        //public void BeerReadTestCorrect(int id)
-        //{
-        //    var beer = new Beer() { Id = id };
-        //    //Act
-        //    beerlogic.Read(beer.Id);
-
-        //    //Assert
-        //    mockBeerRepository.Verify(r => r.Read(beer.Id), Times.Once);
-        //}
-
-
-        //[TestCase(0)]
-        //[TestCase(0)]
-        //public void BeerReadTestInCorrect(int id)
-        //{
-        //    var beer = new Beer() { Id = id };
-        //    try
-        //    {
-        //        //Act
-        //        beerlogic.Read(beer.Id);
-        //    }
-        //    catch { };
-
-        //    //Assert
-        //    mockBeerRepository.Verify(r => r.Read(beer.Id), Times.Never);
-        //}
-        #endregion
-
+     
         #region OtherTests
         [Test]
-        public void AVGPriceTest()
+        public void AVGPriceTestCorrect()
         {
             //Arrange --> Setup()
             double expected = 350;
@@ -222,6 +177,19 @@ namespace KJWTMR_HFT_2022231.Test
 
             //Assert
             Assert.That(result, Is.EqualTo(expected));
+        }
+
+        [Test]
+        public void AVGPriceTestIncorrect()
+        {
+            //Arrange --> Setup()
+            double expected = 300;
+
+            //Act
+            var result = beerlogic.AVGPrice();
+
+            //Assert
+            Assert.That(result, !Is.EqualTo(expected));
         }
         #endregion
 

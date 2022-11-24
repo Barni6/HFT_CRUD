@@ -17,6 +17,7 @@ namespace KJWTMR_HTF_2022231.Models
         public int Id { get; set; }
         public int Price { get; set; }
 
+        [NotMapped]
         [JsonIgnore]
         public virtual Type Type { get; set; }
         [ForeignKey(nameof(Type))]

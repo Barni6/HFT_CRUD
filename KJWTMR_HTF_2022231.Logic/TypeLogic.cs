@@ -20,9 +20,9 @@ namespace KJWTMR_HTF_2022231.Logic
 
         public void Create(Type item)
         {
-            if (item.Id <= 0)
+            if (item.TypeName.Length <= 1)
             {
-                throw new Exception("The Id is lower or equal with 0!");
+                throw new ArgumentException("The Type name is too short!");
             }
             this.repository.Create(item);
         }

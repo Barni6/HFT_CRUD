@@ -19,11 +19,7 @@ namespace KJWTMR_HTF_2022231.Logic
         }
 
         public void Create(Beer item)
-        {           
-            if (item.Id <=0)
-            {
-                throw new Exception("The Id is lower or equal with 0!");
-            }
+        {                     
             this.repository.Create(item);
         }
         public Beer Read(int id)
