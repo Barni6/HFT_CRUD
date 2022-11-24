@@ -5,6 +5,7 @@ using System;
 using System.Linq;
 using System.Numerics;
 using Type = KJWTMR_HTF_2022231.Models.Type;
+using System.Net;
 
 namespace KJWTMR_HFT_2022231.Client
 {
@@ -169,6 +170,16 @@ namespace KJWTMR_HFT_2022231.Client
         }
         #endregion
 
+        static void Stat(string endpoint)
+        {
+            var result = rest.Get<Beer>($"Stat/{endpoint}");
+            //result.ToConsole();
+            foreach (var item in result)
+            {
+                Console.WriteLine(item.ToString());
+            }
+        }
+            
         static void Main(string[] args)
         {
             rest = new RestService("http://localhost:52522/","beer");
@@ -194,10 +205,46 @@ namespace KJWTMR_HFT_2022231.Client
              .Add("Update", () => UpdateBeer("Beer"))
              .Add("Exit", ConsoleMenu.Close);
 
-            //var menu = new ConsoleMenu(args, level: 0)
+            var NonCrudsMenu = new ConsoleMenu(args, level: 2)
+                   .Add("List avg prices by brands", () =>
+                   {
+                       Stat("BrandsAvgPrice");
+                       Console.ReadLine();
+                   })
+                   .Add("List avg prices by types", () =>
+                   {
+                       Stat("TypesAvgPrice");
+                       Console.ReadLine();
+                   })
+                   .Add("List beer counts by brands", () =>
+                   {
+                       Stat("BrandsBeerCount");
+                       Console.ReadLine();
+                   })
+                   .Add("List beer counts by types", () =>
+                   {
+                       Stat("TypesBeerCount");
+                       Console.ReadLine();
+                   })
+                   .Add("List most expensive beers by brands", () =>
+                   {
+                       Stat("MostExpensiveBeerPerBrand");
+                       Console.ReadLine();
+                   })
+                .Add("Exit", ConsoleMenu.Close);
+                   
+            var menu = new ConsoleMenu(args, level: 0)
+               .Add("Brands", () => brandSubMenu.Show())
+               .Add("Types", () => typeSubMenu.Show())
+               .Add("Beers", () => beerSubMenu.Show())
+               .Add("Non-Cruds", () => NonCrudsMenu.Show())
+               .Add("Exit", ConsoleMenu.Close);
+            menu.Show();
+
+            //var menu = new ConsoleMenu(args, level: 1)
             //   .Add("List avg prices by brands", () =>
             //   {
-            //       beerLogic.BrandsAvgPrice().ToConsole();             
+            //       beerLogic.BrandsAvgPrice().ToConsole();
             //       Console.ReadLine();
             //   })
             //   .Add("List avg prices by types", () =>
@@ -207,7 +254,7 @@ namespace KJWTMR_HFT_2022231.Client
             //   })
             //   .Add("List beer counts by brands", () =>
             //   {
-            //       beerLogic.BrandsBeerCount().ToConsole();                  
+            //       beerLogic.BrandsBeerCount().ToConsole();
             //       Console.ReadLine();
             //   })
             //   .Add("List beer counts by types", () =>
@@ -221,12 +268,8 @@ namespace KJWTMR_HFT_2022231.Client
             //       Console.ReadLine();
             //   })
             //   .Add("Exit", ConsoleMenu.Close);
-            var menu = new ConsoleMenu(args, level: 0)
-               .Add("Brands", () => brandSubMenu.Show())
-               .Add("Types", () => typeSubMenu.Show())
-               .Add("Beers", () => beerSubMenu.Show())
-               .Add("Exit", ConsoleMenu.Close);
-            menu.Show();
+
+
         }
     }
 }
