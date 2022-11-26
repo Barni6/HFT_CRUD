@@ -1,4 +1,5 @@
 ﻿using KJWTMR_HTF_2022231.Models;
+using KJWTMR_HTF_2022231.Models.Non_Crud_classes;
 using System;
 using System.Collections.Generic;
 using System.Linq;

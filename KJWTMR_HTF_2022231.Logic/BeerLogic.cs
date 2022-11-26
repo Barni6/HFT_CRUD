@@ -1,6 +1,7 @@
 ﻿using KJWTMR_HTF_2022231.Logic.Interfaces;
 using KJWTMR_HTF_2022231.Models;
 using KJWTMR_HTF_2022231.Models.Interfaces;
+using KJWTMR_HTF_2022231.Models.Non_Crud_classes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -44,20 +45,13 @@ namespace KJWTMR_HTF_2022231.Logic
             this.repository.Update(item);
         }
 
-        //Non-Cruds
-        //public IQueryable<string> BeerPricesAndBrandNames()
-        //{
-        //    return this.repository
-        //        .ReadAll()
-        //        .Select(b => $"{b.Price} from {b.Brand.Name}");
-        //}
-
         public double AVGPrice()
         {
             return this.repository.ReadAll()
                 .Average(t => t.Price);
         }
 
+        //Non-Cruds
         public IEnumerable<BrandAvgPriceStatistics> BrandsAvgPrice()
         {
             return from beer in this.repository.ReadAll()
@@ -89,143 +83,5 @@ namespace KJWTMR_HTF_2022231.Logic
                    select new MostExpensiveBeerPerBrandStatistics() { Name=grp.Key, Price=grp.Max(x=>x.Price)};
         }
 
-    }
-    public class BrandAvgPriceStatistics
-    {
-        public string Name { get; set; }
-        public double? AvgPrice { get; set; }
-
-        public override bool Equals(object obj)
-        {
-            BrandAvgPriceStatistics b = obj as BrandAvgPriceStatistics;
-            if (b==null)
-            {
-                return false;
-            }
-            else
-            {
-                return this.Name == b.Name && this.AvgPrice == b.AvgPrice;
-            }
-        }
-        public override int GetHashCode()
-        {
-            return HashCode.Combine(this.Name, this.AvgPrice);
-        }
-        public override string ToString()
-        {
-            return $"Brand: {Name},  AvgPrice: {AvgPrice}"; 
-
-        }
-    }
-    public class TypeAvgPriceStatistics
-    {
-        public string Name { get; set; }
-        public double? AvgPrice { get; set; }
-
-        public override bool Equals(object obj)
-        {
-            TypeAvgPriceStatistics b = obj as TypeAvgPriceStatistics;
-            if (b == null)
-            {
-                return false;
-            }
-            else
-            {
-                return this.Name == b.Name && this.AvgPrice == b.AvgPrice;
-            }
-        }
-        public override int GetHashCode()
-        {
-            return HashCode.Combine(this.Name, this.AvgPrice);
-        }
-
-        public override string ToString()
-        {
-            return $"Type: {Name},  AvgPrice: {AvgPrice}";
-
-        }
-    }
-    public class BrandsBeerCountStatistics
-    {
-        public string Name { get; set; }
-        public int BeerCount { get; set; }
-
-        public override bool Equals(object obj)
-        {
-            BrandsBeerCountStatistics b = obj as BrandsBeerCountStatistics;
-            if (b == null)
-            {
-                return false;
-            }
-            else
-            {
-                return this.Name == b.Name && this.BeerCount == b.BeerCount;
-            }
-        }
-
-        public override int GetHashCode()
-        {
-            return HashCode.Combine(this.Name, this.BeerCount);
-        }
-        public override string ToString()
-        {
-            return $"Brand: {Name},  BeerCount: {BeerCount}";
-
-        }
-    }
-    public class TypesBeerCountStatistics
-    {
-        public string Name { get; set; }
-        public int BeerCount { get; set; }
-
-        public override bool Equals(object obj)
-        {
-            TypesBeerCountStatistics b = obj as TypesBeerCountStatistics;
-            if (b == null)
-            {
-                return false;
-            }
-            else
-            {
-                return this.Name == b.Name && this.BeerCount == b.BeerCount;
-            }
-        }
-
-        public override int GetHashCode()
-        {
-            return HashCode.Combine(this.Name, this.BeerCount);
-        }
-
-        public override string ToString()
-        {
-            return $"Type: {Name},  BeerCount: {BeerCount}";
-
-        }
-    }
-    public class MostExpensiveBeerPerBrandStatistics
-    {
-        public string Name { get; set; }
-        public int Price { get; set; }
-
-        public override bool Equals(object obj)
-        {
-            MostExpensiveBeerPerBrandStatistics b = obj as MostExpensiveBeerPerBrandStatistics;
-            if (b == null)
-            {
-                return false;
-            }
-            else
-            {
-                return this.Name == b.Name && this.Price == b.Price;
-            }
-        }
-        public override int GetHashCode()
-        {
-            return HashCode.Combine(this.Name, this.Price);
-        }
-        public override string ToString()
-        {
-            return $"Brand: {Name},  Price: {Price}";
-        }
-    }
+    }        
 }

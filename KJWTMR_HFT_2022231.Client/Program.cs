@@ -6,6 +6,7 @@ using System.Linq;
 using System.Numerics;
 using Type = KJWTMR_HTF_2022231.Models.Type;
 using System.Net;
+using KJWTMR_HTF_2022231.Models.Non_Crud_classes;
 
 namespace KJWTMR_HFT_2022231.Client
 {
@@ -124,7 +125,7 @@ namespace KJWTMR_HFT_2022231.Client
                 List<Beer> beers = rest.Get<Beer>("beer");
                 foreach (var item in beers)
                 {
-                    Console.WriteLine(item.Id + ": BrandID:" + item.BrandId+", TypeId"+item.TypeId+", Price:"+item.Price);
+                    Console.WriteLine(item.Id + ": BrandID:" + item.BrandId+", TypeId:"+item.TypeId+", Price:"+item.Price);
                 }
             }
             Console.ReadLine();
@@ -170,16 +171,55 @@ namespace KJWTMR_HFT_2022231.Client
         }
         #endregion
 
-        static void Stat(string endpoint)
+        #region Stat
+        static void StatBrandAvgPrice(string endpoint)
         {
-            var result = rest.Get<Brand>($"Stat/{endpoint}");
+            var result = rest.Get<BrandAvgPriceStatistics>($"Stat/{endpoint}");
             //result.ToConsole();
             foreach (var item in result)
             {
-                Console.WriteLine(item);
+                Console.WriteLine(item.ToString());
             }
         }
-            
+        static void StatTypeAvgPrice(string endpoint)
+        {
+            var result = rest.Get<TypeAvgPriceStatistics>($"Stat/{endpoint}");
+            //result.ToConsole();
+            foreach (var item in result)
+            {
+                Console.WriteLine(item.ToString());
+            }
+        }
+
+        static void StatBrandBeerCount(string endpoint)
+        {
+            var result = rest.Get<BrandsBeerCountStatistics>($"Stat/{endpoint}");
+            //result.ToConsole();
+            foreach (var item in result)
+            {
+                Console.WriteLine(item.ToString());
+            }
+        }
+        static void StatTypeBeerCount(string endpoint)
+        {
+            var result = rest.Get<TypesBeerCountStatistics>($"Stat/{endpoint}");
+            //result.ToConsole();
+            foreach (var item in result)
+            {
+                Console.WriteLine(item.ToString());
+            }
+        }
+
+        static void StatBeerMostExpensive(string endpoint)
+        {
+            var result = rest.Get<MostExpensiveBeerPerBrandStatistics>($"Stat/{endpoint}");
+            //result.ToConsole();
+            foreach (var item in result)
+            {
+                Console.WriteLine(item.ToString());
+            }
+        }
+        #endregion
         static void Main(string[] args)
         {
             
@@ -210,27 +250,27 @@ namespace KJWTMR_HFT_2022231.Client
             var NonCrudsMenu = new ConsoleMenu(args, level: 2)
                    .Add("List avg prices by brands", () =>
                    {
-                       Stat("BrandsAvgPrice");
+                       StatBrandAvgPrice("BrandsAvgPrice");
                        Console.ReadLine();
                    })
                    .Add("List avg prices by types", () =>
                    {
-                       Stat("TypesAvgPrice");
+                       StatTypeAvgPrice("TypesAvgPrice");
                        Console.ReadLine();
                    })
                    .Add("List beer counts by brands", () =>
                    {
-                       Stat("BrandsBeerCount");
+                       StatBrandBeerCount("BrandsBeerCount");
                        Console.ReadLine();
                    })
                    .Add("List beer counts by types", () =>
                    {
-                       Stat("TypesBeerCount");
+                       StatTypeBeerCount("TypesBeerCount");
                        Console.ReadLine();
                    })
                    .Add("List most expensive beers by brands", () =>
                    {
-                       Stat("MostExpensiveBeerPerBrand");
+                       StatBeerMostExpensive("MostExpensiveBeerPerBrand");
                        Console.ReadLine();
                    })
                 .Add("Exit", ConsoleMenu.Close);
@@ -242,36 +282,7 @@ namespace KJWTMR_HFT_2022231.Client
                .Add("Non-Cruds", () => NonCrudsMenu.Show())
                .Add("Exit", ConsoleMenu.Close);
             menu.Show();
-
-            //var menu = new ConsoleMenu(args, level: 1)
-            //   .Add("List avg prices by brands", () =>
-            //   {
-            //       beerLogic.BrandsAvgPrice().ToConsole();
-            //       Console.ReadLine();
-            //   })
-            //   .Add("List avg prices by types", () =>
-            //   {
-            //       beerLogic.TypesAvgPrice().ToConsole();
-            //       Console.ReadLine();
-            //   })
-            //   .Add("List beer counts by brands", () =>
-            //   {
-            //       beerLogic.BrandsBeerCount().ToConsole();
-            //       Console.ReadLine();
-            //   })
-            //   .Add("List beer counts by types", () =>
-            //   {
-            //       beerLogic.TypesBeerCount().ToConsole();
-            //       Console.ReadLine();
-            //   })
-            //   .Add("List most expensive beers by brands", () =>
-            //   {
-            //       beerLogic.MostExpensiveBeerPerBrand().ToConsole();
-            //       Console.ReadLine();
-            //   })
-            //   .Add("Exit", ConsoleMenu.Close);
-
-
+         
         }
     }
 }

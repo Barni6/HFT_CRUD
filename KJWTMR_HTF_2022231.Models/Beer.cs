@@ -32,6 +32,5 @@ namespace KJWTMR_HTF_2022231.Models
         public virtual Brand Brand { get; set; }
         [ForeignKey(nameof(Brand))]
         public int BrandId { get; set; }
-   
     }
 }

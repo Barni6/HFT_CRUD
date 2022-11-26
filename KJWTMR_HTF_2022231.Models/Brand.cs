@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Runtime.ConstrainedExecution;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace KJWTMR_HTF_2022231.Models
@@ -21,18 +22,11 @@ namespace KJWTMR_HTF_2022231.Models
         public string Name { get; set; }
 
 
-        [NotMapped]
+        [NotMapped]        
         public virtual ICollection<Beer> Beers { get; set; }
         public Brand()
         {
             this.Beers = new HashSet<Beer>();
-        }
-
-
-        public double AvgPrice { get; set; }
-        public override string ToString()
-        {
-            return $"Brand: {Name},  AvgPrice: {AvgPrice}";
         }
     }
 }

@@ -2,6 +2,7 @@
 using KJWTMR_HTF_2022231.Logic.Interfaces;
 using KJWTMR_HTF_2022231.Models;
 using KJWTMR_HTF_2022231.Models.Interfaces;
+using KJWTMR_HTF_2022231.Models.Non_Crud_classes;
 using Moq;
 using NUnit.Framework;
 using System;
