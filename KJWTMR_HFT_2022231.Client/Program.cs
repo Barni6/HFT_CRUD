@@ -31,10 +31,7 @@ namespace KJWTMR_HFT_2022231.Client
             if (entity == "Brand")
             {
                 List<Brand> brands = rest.Get<Brand>("brand");
-                foreach (var item in brands)
-                {
-                    Console.WriteLine(item.Id + ": " + item.Name);
-                }
+                brands.ToConsole();
             }
             Console.ReadLine();
         }
@@ -77,10 +74,7 @@ namespace KJWTMR_HFT_2022231.Client
             if (entity == "Type")
             {
                 List<Type> types = rest.Get<Type>("type");
-                foreach (var item in types)
-                {
-                    Console.WriteLine(item.Id + ": " + item.TypeName);
-                }
+                types.ToConsole();
             }
             Console.ReadLine();
         }
@@ -122,11 +116,8 @@ namespace KJWTMR_HFT_2022231.Client
         {
             if (entity == "Beer")
             {
-                List<Beer> beers = rest.Get<Beer>("beer");
-                foreach (var item in beers)
-                {
-                    Console.WriteLine(item.Id + ": BrandID:" + item.BrandId+", TypeId:"+item.TypeId+", Price:"+item.Price);
-                }
+                List<Beer> beers = rest.Get<Beer>("beer");                              
+               beers.ToConsole();
             }
             Console.ReadLine();
         }
@@ -134,8 +125,8 @@ namespace KJWTMR_HFT_2022231.Client
         {
             if (entity == "Beer")
             {
-                Console.Write("Enter Beer Id: ");
-                int id = int.Parse(Console.ReadLine());
+                //Console.Write("Enter Beer Id: ");
+                //int id = int.Parse(Console.ReadLine());
                 Console.Write("Enter Beer Brandid: ");
                 int Brandid = int.Parse(Console.ReadLine());
                 Console.Write("Enter Beer Price: ");
@@ -144,7 +135,7 @@ namespace KJWTMR_HFT_2022231.Client
                 int TypeId = int.Parse(Console.ReadLine());
 
                 string name = Console.ReadLine();
-                rest.Post(new Beer() {  Id=id, BrandId=Brandid, Price=Price, TypeId=TypeId }, "beer");
+                rest.Post(new Beer() {   BrandId=Brandid, Price=Price, TypeId=TypeId }, "beer");
             }
         }
         static void DeleteBeer(string entity)
@@ -163,9 +154,14 @@ namespace KJWTMR_HFT_2022231.Client
                 Console.Write("Enter Beer's id to update: ");
                 int id = int.Parse(Console.ReadLine());
                 Beer one = rest.Get<Beer>(id, "beer");
-                Console.Write($"New Brand name [old: {one.Brand.Name}]: ");
-                string name = Console.ReadLine();
-                one.Brand.Name = name;
+                //Console.Write($"New Brand name [old: {one.Brand.Name}]: ");
+                //string name = Console.ReadLine();
+                //one.Brand.Name = name;
+                //rest.Put(one, "beer");
+
+                Console.Write($"New Beer price [old: {one.Price}]: ");
+                int newPrice = int.Parse(Console.ReadLine());
+                one.Price = newPrice;
                 rest.Put(one, "beer");
             }
         }
@@ -175,55 +171,36 @@ namespace KJWTMR_HFT_2022231.Client
         static void StatBrandAvgPrice(string endpoint)
         {
             var result = rest.Get<BrandAvgPriceStatistics>($"Stat/{endpoint}");
-            //result.ToConsole();
-            foreach (var item in result)
-            {
-                Console.WriteLine(item.ToString());
-            }
+            result.ToConsole();         
         }
         static void StatTypeAvgPrice(string endpoint)
         {
             var result = rest.Get<TypeAvgPriceStatistics>($"Stat/{endpoint}");
-            //result.ToConsole();
-            foreach (var item in result)
-            {
-                Console.WriteLine(item.ToString());
-            }
+            result.ToConsole();
         }
 
         static void StatBrandBeerCount(string endpoint)
         {
             var result = rest.Get<BrandsBeerCountStatistics>($"Stat/{endpoint}");
-            //result.ToConsole();
-            foreach (var item in result)
-            {
-                Console.WriteLine(item.ToString());
-            }
+            result.ToConsole();
         }
         static void StatTypeBeerCount(string endpoint)
         {
             var result = rest.Get<TypesBeerCountStatistics>($"Stat/{endpoint}");
-            //result.ToConsole();
-            foreach (var item in result)
-            {
-                Console.WriteLine(item.ToString());
-            }
+            result.ToConsole();
         }
 
         static void StatBeerMostExpensive(string endpoint)
         {
             var result = rest.Get<MostExpensiveBeerPerBrandStatistics>($"Stat/{endpoint}");
-            //result.ToConsole();
-            foreach (var item in result)
-            {
-                Console.WriteLine(item.ToString());
-            }
+            result.ToConsole();
         }
         #endregion
         static void Main(string[] args)
         {
             
             //ToStringeket kell megcsinálni
+            //beer updatet megcsinálni
             rest = new RestService("http://localhost:52522/","beer");
 
             var brandSubMenu = new ConsoleMenu(args, level: 1)

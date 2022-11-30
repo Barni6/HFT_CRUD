@@ -17,12 +17,12 @@ namespace KJWTMR_HFT_2022231.Repository
 
         public override Beer Read(int Id)
         {
-            return this.ctx.Beers.FirstOrDefault(t => t.BrandId == Id);
+            return this.ctx.Beers.FirstOrDefault(t => t.Id == Id);
         }
 
         public override void Update(Beer item)
         {
-            var old = Read(item.BrandId);
+            var old = Read(item.Id);
             foreach (var prop in old.GetType().GetProperties())
             {
                 if (prop.GetAccessors().FirstOrDefault(t => t.IsVirtual) == null)

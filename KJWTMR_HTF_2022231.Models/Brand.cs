@@ -28,5 +28,10 @@ namespace KJWTMR_HTF_2022231.Models
         {
             this.Beers = new HashSet<Beer>();
         }
+
+        public override string ToString()
+        {
+            return $"Id:{Id}, Name:{Name}";
+        }
     }
 }

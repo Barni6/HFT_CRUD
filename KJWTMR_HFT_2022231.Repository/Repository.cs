@@ -20,7 +20,8 @@ namespace KJWTMR_HFT_2022231.Repository
 
         public void Delete(int Id)
         {
-            ctx.Set<T>().Remove(Read(Id));
+            //ctx.Set<T>().Remove(Read(Id));
+            ctx.Remove(Read(Id));
             ctx.SaveChanges();
         }    
 

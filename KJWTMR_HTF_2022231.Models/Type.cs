@@ -31,5 +31,10 @@ namespace KJWTMR_HTF_2022231.Models
         }
 
         public int Alcohol_Content { get; set; }
+
+        public override string ToString()
+        {
+            return $"Id: {Id}, Name:{TypeName}, Alcoholcontent:{Alcohol_Content}";
+        }
     }
 }

@@ -40,16 +40,16 @@ namespace KJWTMR_HTF_2022231.Models.Data
             {
                 entity.HasOne(beer => beer.Brand)
                     .WithMany(brand => brand.Beers)
-                    .HasForeignKey(beer => beer.BrandId)
-                    .OnDelete(DeleteBehavior.Cascade);
+                    .HasForeignKey(beer => beer.BrandId);
+                    //.OnDelete(DeleteBehavior.Cascade);
             });
 
             modelBuilder.Entity<Beer>(entity =>
             {
                 entity.HasOne(beer => beer.Type)
                     .WithMany(type => type.Beers)
-                    .HasForeignKey(beer => beer.TypeId)
-                    .OnDelete(DeleteBehavior.Cascade);
+                    .HasForeignKey(beer => beer.TypeId);
+                    //.OnDelete(DeleteBehavior.Cascade);
             });
             //brands
             Brand soproni = new Brand() { Id = 1, Name="Soproni" };
